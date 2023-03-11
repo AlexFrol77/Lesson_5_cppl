@@ -2,21 +2,32 @@
 #include <vector>
 
 template <class T>
-void MySqrt(T &num) {
-	std::cout << "[IN]: " << num << std::endl;
-	std::cout << "[OUT]: " << num * num << std::endl;
+T MySqrt(T num) {
+	return (num * num);
 }
 template <class T>
-void MySqrt(std::vector<T> &vec) {
-	std::cout << "[IN]: ";
-	for (const auto sl : vec) {
-		std::cout << sl << " ";
+std::vector<T> MySqrt(std::vector<T> vec) {
+	for (int i = 0; i < vec.size(); i++) {
+		vec[i] = vec[i] * vec[i];
+	}
+	return vec;
+}
+void PrintIn() {
+	std::cout << "[IN:] ";
+}
+void PrintOut() {
+	std::cout << "[OUT:] ";
+}
+template <class T>
+void PrintNum(T& num) {
+	std::cout << num << std::endl;
+}
+template <class T>
+void PrintVec(std::vector<T>& vec) {
+	for (const auto& st : vec) {
+		std::cout << st << " ";
 	}
 	std::cout << std::endl;
-	std::cout << "[OUT]: ";
-	for (const auto sl : vec) {
-		std::cout << sl * sl << " ";
-	}
 }
 
 int main(int argc, char** argv) {
@@ -24,10 +35,20 @@ int main(int argc, char** argv) {
 	setlocale(LC_ALL, "rus");
 	
 	auto num = 4;
+	auto num_sqrt = MySqrt(num);
+
 	std::vector<int> vec = { -1, 4, 8 };
-	
-	MySqrt(num);
-	MySqrt(vec);
+	std::vector <int> vec_sqrt = MySqrt(vec);
+
+	PrintIn();
+	PrintNum(num);
+	PrintOut();
+	PrintNum(num_sqrt);
+
+	PrintIn();
+	PrintVec(vec);
+	PrintOut();
+	PrintVec(vec_sqrt);
 
 	return 0;
 }
